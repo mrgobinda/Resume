@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gobinda Bairagi – Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --coral: #FF5F6D;
+    --amber: #FFC371;
+    --teal: #00B4D8;
+    --violet: #7B5EA7;
+    --mint: #06D6A0;
+    --dark: #12111A;
+    --mid: #2A2838;
+    --light: #F7F6FF;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    padding: 56px 60px 48px;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,95,109,0.35) 0%, transparent 70%);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.25) 0%, transparent 70%);
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -1px;
+  }
+
+  .name span {
+    background: linear-gradient(135deg, var(--coral), var(--amber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .contact-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 7px 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+    backdrop-filter: blur(4px);
+  }
+
+  .pill-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* LAYOUT */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 0;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--mid);
+    padding: 44px 32px;
+    position: relative;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--coral), var(--amber), var(--mint), var(--teal));
+  }
+
+  .s-section {
+    margin-bottom: 40px;
+  }
+
+  .s-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .s-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Competency tags */
+  .tag-group {
+    margin-bottom: 16px;
+  }
+
+  .tag-group-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    color: #fff;
+  }
+
+  .tag-coral { background: rgba(255,95,109,0.22); border: 1px solid rgba(255,95,109,0.4); }
+  .tag-teal  { background: rgba(0,180,216,0.18); border: 1px solid rgba(0,180,216,0.35); }
+  .tag-violet{ background: rgba(123,94,167,0.22); border: 1px solid rgba(123,94,167,0.4); }
+  .tag-mint  { background: rgba(6,214,160,0.18); border: 1px solid rgba(6,214,160,0.35); }
+  .tag-amber { background: rgba(255,195,113,0.18); border: 1px solid rgba(255,195,113,0.35); }
+
+  /* Skill bars */
+  .skill-item {
+    margin-bottom: 14px;
+  }
+
+  .skill-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .skill-name {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .skill-pct {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .skill-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    border-radius: 10px;
+    animation: fillIn 1.2s ease forwards;
+  }
+
+  @keyframes fillIn {
+    from { width: 0; }
+  }
+
+  /* Education */
+  .edu-item {
+    margin-bottom: 18px;
+    padding-left: 14px;
+    border-left: 2px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 4px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .edu-degree {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.3;
+  }
+
+  .edu-school {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  .edu-year {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+
+  /* MAIN */
+  .main {
+    padding: 44px 52px;
+    background: var(--light);
+  }
+
+  /* Summary */
+  .summary-box {
+    background: linear-gradient(135deg, #fff 60%, rgba(255,95,109,0.04));
+    border: 1px solid rgba(0,0,0,0.07);
+    border-left: 4px solid;
+    border-image: linear-gradient(180deg, var(--coral), var(--amber)) 1;
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #3a3850;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title .accent-bar {
+    width: 32px; height: 4px;
+    border-radius: 2px;
+  }
+
+  /* Experience cards */
+  .exp-card {
+    position: relative;
+    padding: 0 0 32px 28px;
+    border-left: 2px solid rgba(0,0,0,0.07);
+    margin-bottom: 0;
+  }
+
+  .exp-card:last-child { padding-bottom: 0; }
+
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: -8px; top: 2px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.07);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .exp-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+
+  .exp-period {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .exp-bullets li {
+    font-size: 13.5px;
+    color: #4a4860;
+    line-height: 1.65;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  /* Color schemes for cards */
+  .c1::before { background: var(--coral); }
+  .c1 .exp-period { background: rgba(255,95,109,0.1); color: var(--coral); }
+  .c1 .exp-bullets li::before { color: var(--coral); }
+
+  .c2::before { background: var(--teal); }
+  .c2 .exp-period { background: rgba(0,180,216,0.1); color: var(--teal); }
+  .c2 .exp-bullets li::before { color: var(--teal); }
+
+  .c3::before { background: var(--violet); }
+  .c3 .exp-period { background: rgba(123,94,167,0.1); color: var(--violet); }
+  .c3 .exp-bullets li::before { color: var(--violet); }
+
+  .main-section { margin-bottom: 40px; }
+
+  /* WPM highlight */
+  .highlight-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: linear-gradient(135deg, var(--coral), var(--amber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  @media (max-width: 780px) {
+    .body-grid { grid-template-columns: 1fr; }
+    .header { padding: 40px 32px; }
+    .header-grid { grid-template-columns: 1fr; }
+    .contact-pills { align-items: flex-start; }
+    .main { padding: 32px 24px; }
+    .sidebar { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-grid">
+    <div>
+      <div class="name">GOBINDA <span>BAIRAGI</span></div>
+      <div class="tagline">Administrative &amp; IT Professional</div>
+    </div>
+    <div class="contact-pills">
+      <div class="pill">
+        <span class="pill-dot" style="background:var(--coral)"></span>
+        Bangaon, West Bengal
+      </div>
+      <div class="pill">
+        <span class="pill-dot" style="background:var(--amber)"></span>
+        +91 9144499949
+      </div>
+      <div class="pill">
+        <span class="pill-dot" style="background:var(--mint)"></span>
+        thisisgobinda@gmail.com
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BODY -->
+<div class="body-grid">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Core Skills -->
+    <div class="s-section">
+      <div class="s-title">Competencies</div>
+
+      <div class="tag-group">
+        <div class="tag-group-label">Administrative</div>
+        <div class="tags">
+          <span class="tag tag-coral">Data Entry</span>
+          <span class="tag tag-coral">Record Mgmt</span>
+          <span class="tag tag-coral">40 WPM Typing</span>
+          <span class="tag tag-coral">Workflow Org.</span>
+        </div>
+      </div>
+
+      <div class="tag-group">
+        <div class="tag-group-label">Office Suite</div>
+        <div class="tags">
+          <span class="tag tag-teal">MS Word</span>
+          <span class="tag tag-teal">MS Excel</span>
+          <span class="tag tag-teal">MS PowerPoint</span>
+          <span class="tag tag-teal">Photoshop</span>
+        </div>
+      </div>
+
+      <div class="tag-group">
+        <div class="tag-group-label">Programming &amp; IT</div>
+        <div class="tags">
+          <span class="tag tag-violet">Python</span>
+          <span class="tag tag-violet">SQL Server</span>
+          <span class="tag tag-violet">JavaScript</span>
+          <span class="tag tag-violet">HTML/CSS</span>
+          <span class="tag tag-mint">C</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proficiency -->
+    <div class="s-section">
+      <div class="s-title">Proficiency</div>
+
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">MS Word</span><span class="skill-pct">Expert</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:97%;background:linear-gradient(90deg,var(--coral),var(--amber))"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">Data Entry &amp; Typing</span><span class="skill-pct">40 WPM</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%;background:linear-gradient(90deg,var(--teal),var(--mint))"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">Python / Scripting</span><span class="skill-pct">Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%;background:linear-gradient(90deg,var(--violet),#b48de8)"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">Web Dev (HTML/CSS/JS)</span><span class="skill-pct">Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:82%;background:linear-gradient(90deg,var(--amber),var(--coral))"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">SQL Server</span><span class="skill-pct">Proficient</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%;background:linear-gradient(90deg,var(--mint),var(--teal))"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-top"><span class="skill-name">Adobe Photoshop</span><span class="skill-pct">Proficient</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:68%;background:linear-gradient(90deg,var(--teal),var(--violet))"></div></div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="s-section">
+      <div class="s-title">Education</div>
+
+      <div class="edu-item" style="border-color:rgba(255,95,109,0.3)">
+        <div style="position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--coral);border:2px solid var(--mid)"></div>
+        <div class="edu-degree">B.Sc. (Bachelor of Science)</div>
+        <div class="edu-school">West Bengal State University</div>
+        <div class="edu-year" style="color:var(--coral)">2014</div>
+      </div>
+
+      <div class="edu-item" style="border-color:rgba(0,180,216,0.3)">
+        <div style="position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--teal);border:2px solid var(--mid)"></div>
+        <div class="edu-degree">Certificate – Basic Computers &amp; Programming</div>
+        <div class="edu-school">APTECH Computer Education (6-Month)</div>
+        <div class="edu-year" style="color:var(--teal)">Post-Grad</div>
+      </div>
+
+      <div class="edu-item" style="border-color:rgba(255,195,113,0.3)">
+        <div style="position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--amber);border:2px solid var(--mid)"></div>
+        <div class="edu-degree">Higher Secondary (12th)</div>
+        <div class="edu-school">WBCHSE</div>
+        <div class="edu-year" style="color:var(--amber)">2011</div>
+      </div>
+
+      <div class="edu-item" style="border-color:rgba(6,214,160,0.3)">
+        <div style="position:absolute;left:-5px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--mint);border:2px solid var(--mid)"></div>
+        <div class="edu-degree">Madhyamik (10th) – 73.5%</div>
+        <div class="edu-school">WBBSE</div>
+        <div class="edu-year" style="color:var(--mint)">2009</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- Summary -->
+    <div class="main-section">
+      <div class="section-title">
+        <div class="accent-bar" style="background:linear-gradient(90deg,var(--coral),var(--amber))"></div>
+        Professional Summary
+      </div>
+      <div class="summary-box">
+        Technically proficient and highly organized professional with <strong>over a decade</strong> of self-directed operational and administrative experience. Seeking a clerical or administrative role within the West Bengal Government. Brings high-speed data entry capabilities (<span class="highlight-stat">40 WPM</span>), expert-level MS Office proficiency, and advanced IT troubleshooting skills to ensure efficient, error-free departmental operations and data management.
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="main-section">
+      <div class="section-title">
+        <div class="accent-bar" style="background:linear-gradient(90deg,var(--teal),var(--mint))"></div>
+        Professional Experience
+      </div>
+
+      <div class="exp-card c1">
+        <div class="exp-header">
+          <div class="exp-title">Freelance Web Developer &amp; IT Consultant</div>
+          <div class="exp-period">2023 – Present</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed, deployed, and currently maintain <strong>chirkut.in</strong>, independently handling all technical backend requirements and server-side administration.</li>
+          <li>Automate complex data workflows and troubleshoot digital infrastructure utilizing programming languages like Python.</li>
+          <li>Manage domain hosting, digital asset logistics, and routine technical maintenance to ensure zero downtime.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card c2">
+        <div class="exp-header">
+          <div class="exp-title">Digital Media Administrator &amp; Designer <span style="font-weight:400;font-size:13px;color:#888">(Freelance)</span></div>
+          <div class="exp-period">2019 – 2023</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Executed end-to-end digital asset creation for local clients, ensuring strict adherence to project specifications and delivery deadlines.</li>
+          <li>Maintained highly organized digital libraries and managed all client-facing communications, invoicing, and contract compliance.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card c3">
+        <div class="exp-header">
+          <div class="exp-title">Educational Administrator &amp; Tutor <span style="font-weight:400;font-size:13px;color:#888">(Self-Employed)</span></div>
+          <div class="exp-period">2014 – 2019</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Directed daily educational operations, curriculum planning, and scheduling for a rotating roster of up to <strong>200 students</strong>.</li>
+          <li>Managed all administrative logistics, including precise fee collection tracking, attendance records, and performance data management.</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
